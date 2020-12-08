@@ -25,14 +25,14 @@ $(()=>{
       constructor(){
         this.pattern = [];
         this.enemy = undefined;
-        this.monsterTypes = ['Demon','kobol','Seperent']; 
+        this.monsterTypes = ['Demon','Skeleton','Seperent']; 
         this.playerHealth = 100;
         }
       //// method to spawn monster
       spawnMonsters(){
 
         //randomly decide if monsters are in new room or not
-        let chance = Math.floor(Math.random()*3);
+        let chance = Math.floor(Math.random()*2);
           // if chance = 0 generate a random monster and push into enemies array
         if( chance === 0 ){
           let ranName = this.monsterTypes[Math.floor(Math.random()*3)];
