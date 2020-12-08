@@ -90,3 +90,20 @@ body{
     width: 100px;
     padding: 7px;
   }
+  /**********
+  Navagation buttons
+  *************/
+  #move-room-buttons{
+    position: relative;
+    display: flex;
+    width: 100%;
+    top: 70vh;
+    justify-content: space-around;
+    background-color:teal;
+    padding: 10px;
+    
+  }
+  #move-room-buttons button{
+    width: 100px;
+    height: 100px;
+  }

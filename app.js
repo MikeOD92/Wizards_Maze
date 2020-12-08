@@ -1,129 +1,110 @@
 $(()=>{
   
-    class Player {
-      constructor(){
-        this.health = 100;
-        this.inventory = [];
-        this.currentRoom = 10;
-        this.previousRoom = undefined;
-        
-        
-      }
-      //////Methods for each spell 
-      fireball(){
-        
-      }
-      heal(){
-        
-      }
-      run(){
-        let chance = Math.floor(Math.random()*2)
-       
-        
-      }
-      pickUp(event){
-        this.inventory.push(event.currentTarget);
-      }
-      attack(enemy){
-        enemy.health -= 5;
-        console.log(`players attack hit the ${enemy.name} health is ${enemy.health}`);
-        
-      }
-    }
-    ////// initiate a player 
-    const player1 = new Player();
-    
-    ///////////////////////////////////////////
-    
-    const monsterTypes = ['Demon','Kobal', 'Seperent'];
-      
-    /////////////////////////class for making monsters 
-    
-    
     class Monster {
       constructor(name,health,damage){
         this.name = name;
         this.health = health;
         this.damage = damage;
-        
       }
-      attack(){
-        let chance = Math.floor(Math.random()*2)
-        if(chance === 0){
+      monstAttack() {
+        let chance = Math.floor(Math.random()*2);
+        if(chance === 0){// this is the monsters attack. It randomly decides if it hit or misses
           console.log( `${this.name}'s attack missed`);
         } else {
-          player1.health -= this.damage;
-          $('#health-bar').css('width',`${player1.health}px`)
-          console.log(`${this.name}'s attack hit the players health is ${player1.health}`);
+          game1.playerHealth -= this.damage;
+          $('#health-bar').css('width',`${game1.playerHealth}px`);
+          console.log(`${this.name}'s attack hit the players health is ${game1.playerHealth}`);
         }
-        
+        if(game1.playerHealth <= 0){
+          console.log('game over')
+        }
       }
-    }
-      const fred = new Monster('orgre',10,10); // monster to test things with
     
-    ////////////////////////Room Class
-    class Room {
-      constructor(number,doors){
-        this.number = number;
-        this.doors = doors;
-        this.enemies = [];
-        this.$el = $(`#room${this.number}`);
-        this.visited = false;
-      }
-      color(){
-        console.log(this.$el);
-        this.$el.css('background-color','red');
-      }
-      enter(){
-        player1.currentRoom = this.number;
-        this.spawnMonsters();
-        this.visited = true;
-        ///////////////////////////////////testing lines
-        console.log( 'the player has entered room 10');
-        console.log(this.enemies);
-        ///////////////////////////////////////////////////
-        if(this.enemies.length > 0){
-          this.battle();
-          
-        } else {
-          return
+    }
+    class Game {
+      constructor(){
+        this.pattern = [];
+        this.enemy = undefined;
+        this.monsterTypes = ['Demon','kobol','Seperent']; 
+        this.playerHealth = 100;
         }
-      }
+      //// method to spawn monster
       spawnMonsters(){
-        let chance = Math.floor(Math.random()*2)
-        
-        if (this.visited === false){
-          
+
+        //randomly decide if monsters are in new room or not
+        let chance = Math.floor(Math.random()*3);
+          // if chance = 0 generate a random monster and push into enemies array
         if( chance === 0 ){
-          
+          let ranName = this.monsterTypes[Math.floor(Math.random()*3)];
           let ranHealth = 10 + Math.floor(Math.random()*50); 
-          let ranDamage = 4 + Math.floor(Math.random()*10);
-          let ranName = monsterTypes[Math.floor(Math.random()*3)];
+          let ranDamage = 16 + Math.floor(Math.random()*10);
           
           const baddy1 = new Monster(ranName,ranHealth,ranDamage);
-          
-          this.enemies.push(baddy1);
+          // our new bad guy is pushed into the enemies array
+          this.enemy = baddy1;
           
         } else {
-          return
+          return// if chance is not = 0 no monster is generated
         }
+      }
+      newRoom(){
+        this.enemy = undefined;
+        // called when a new room is entered
+        this.spawnMonsters();
+        //creates monsters by running spawn function
+        // if there are enemies in the array we start the battle function. 
+        if (this.enemy !== undefined){
+          this.startBattle();
+          console.log(this.enemy);
+        } else {
+        return
+        }
+       
+        // otherwise nothing happens we just entered the room
+      }
+      //// these function for some reason done seem to connect to the class
+      fireball(){
+        //// this kinda works but i have no idea why im calling these as game1.enemy.health as opposed to this.enemy
+        game1.enemy.health -= 10;
+        console.log(`the players fireball did 10 damage the ${game1.enemy.name} health is now ${game1.enemy.health}`);
+        game1.checkBattle();
+        if (game1.enemy !== undefined){
+        game1.enemy.monstAttack();
       }}
-      battle() {
+      heal(){
+        console.log(game1.playerHealth);
+        game1.playerHealth += 10;
+        console.log(game1.playerHealth);
+      }
+      run(){
+        $('#battle').css('display','none');
+        $('#move-room-buttons').css('display','flex');
+        game1.enemy = undefined;
+          
+      }
+      startBattle(){
         $('#battle').css('display','block');
-        
-        while(player1.health > 0 && this.enemies[0].health > 0){
-          this.enemies[0].attack();
-          // need to have some way for the player to choose their attack; probably will have to do with the player.attack function;
-          player1.attack(this.enemies[0]);/// look at the space battle game for a little back and forth battle action. probably a while loop but how can i let the player have the option to choose the action.  
-        } if(this.enemies[0].health <= 0){
-          console.log( `The ${this.enemies[0].name} has been slain.`)
+        $('#move-room-buttons').css('display','none');
+
+      }
+      checkBattle(){
+        if (game1.enemy.health <= 0){
+          console.log(`the ${game1.enemy.name} has been slain`)
+          game1.enemy = undefined;
           $('#battle').css('display','none');
-        } else {
-          console.log('GAME OVER');
+          $('#move-room-buttons').css('display','flex');
         }
-         
-      }}
-      
+        
+   
+      }
+      checkPattern(){
+        if (game1.pattern === ['left','right','left']){
+          console.log('congrats you found your way out!');
+        } else if (game1.pattern.length = 4){
+          game1.pattern = [];
+        }
+      }
+    }
     
     
       const $welcome = $('#welcome');
@@ -142,15 +123,25 @@ $(()=>{
          $instruction.css('display','none');
       });
       
-      const room10 = new Room(10,3);
-      room10.enter();
-      
-      
-      
-       
-    
-      
-      
-    
-    
+      //////////////////movement button listneners
+const game1 = new Game();
+
+const $left = $('#left');
+const $right = $('#right');
+
+$left.on('click',()=>{
+  game1.pattern.push('left');
+  console.log(game1.pattern);
+  game1.newRoom();
+})
+$right.on('click',()=>{
+  game1.pattern.push('right');
+  console.log(game1.pattern);
+  game1.newRoom();
+})
+////////battle button listeners 
+$('#fireball').on('click', game1.fireball);
+$('#run').on('click', game1.run);
+$('#heal').on('click', game1.heal);
+
     });
