@@ -12,6 +12,7 @@
   <script src="app.js"></script>
 </head>
 <body>
+  
     <div id='welcome'>
         <div id='modal'>
           <h1> Welcome Wizard </h1>
@@ -20,31 +21,27 @@
           <button id="how-to"> How to Play </button> 
           <div id="instructions"> 
               <ul>
-               <li> You've been cast into the maze, find the peices of your staff and open a portal to return home. </li>
+               <li> You've been cast into the maze </li>
                 <li> move from room to room by clicking on doors </li>
                 <li> upon entering a new room enemies may be randomly genrated </li>
+                <li> find the correct path to exit the maze</li>
             </ul>
             <button id='close-inst'> Close </button>
           </div>
         </div>
-      </div>
+    
+  </div>
     <!--  Player health and other global always visable items -->
       </div>
       <div id='player-health'>
           <h4> health</h4>
           <span id = 'health-bar'></span>
         </div>
-    <!--   <div id='room1'></div>
-      <div id='room2'></div>
-      <div id='room3'></div>
-      <div id='room4'></div>
-      <div id='room5'></div>
-      <div id='room6'></div>
-      <div id='room7'></div>
-      <div id='room8'></div>
-      <div id='room9'></div>-->
-      <div id='room10'></div>
-      <div id='room11'></div> 
+      <div id="current-list">
+        <ul id="rooms-visited">
+
+        </ul>
+      </div>
       <div id = 'move-room-buttons'>
   
         <button id='left' class = 'move'>Left </button>
@@ -56,10 +53,20 @@
          </span>
         <span id="player-avatar"></span>
         <div id ='battle-options'>
-          <button id='fireball'>Fire Ball</button>
-          <button id='heal'>Heal</button>
-          <button id='run'> Run </button>        
+          <button id='fireball' type='button' >Fire Ball</button>
+          <button id='heal' type='button'>Heal</button>
+          <button id='run' type='button'> Run </button>        
         </div>
-      </>
+      </div>
+
+      <div id="gameover-screen">
+        <h1> Game Over</h1>
+        <button class="new-game" type='button'> Play again?</button>
+      </div>
+
+      <div id='win-screen'>
+        <h1> congrulations you have found your way out of the maze, you Win!</h1>
+        <button class="new-game" type='button'> Play again?</button>
+      </div>
 </body>
 </html>
