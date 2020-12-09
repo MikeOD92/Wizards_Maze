@@ -141,7 +141,7 @@ $(()=>{
           if(this.winPattern.length !== this.pattern.length){
             checker = false;
           } else {
-            for(let i = 0; i < this.winPattern.length; i++){
+            for(let i = 0; i < this.winPattern.length-1; i++){
               if(this.winPattern[i] !== this.pattern[i]){
                 checker = false;
                 return;
@@ -225,6 +225,8 @@ $(()=>{
       $('#health-bar').css('width',`${newPlayer.health}px`);
       $("#gameover-screen").css('display','none');
       $('#win-screen').css('display','none');
+      $('#battle').css('display','none');
+      $('#move-room-buttons').css('display','flex');
     })
         
   

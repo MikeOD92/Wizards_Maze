@@ -152,5 +152,15 @@ body{
   }
 
   #win-screen{
-    display:none;
+    position: fixed;
+    top: 0;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(227, 179, 23);
+    color: black;
+
   }
