@@ -72,7 +72,11 @@ $(()=>{
       newRoom(monster){
           this.checkPattern(); // check the winstate of the game
           monster.active = undefined;
+          if(this.pattern[this.pattern.length-1] === undefined){
+            return;
+          } else{
           $('#rooms-visited').append(`<li> ${this.pattern[this.pattern.length-1]}</li>`);
+          }
           // called when a new room is entered
           this.spawnMonster(monster);
           //creates monsters by running spawn function
