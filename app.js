@@ -55,7 +55,7 @@ $(()=>{
           this.health += 20;
           $('#health-bar').css('width',`${this.health}px`);
           $prevGameText.text($gameText.text());
-          $gameText.text('You gained 20 health points')
+          $gameText.text('You cast heal and gained 20 health points')
           } else {
             $prevGameText.text($gameText.text());
             $gameText.text('your health is full');
