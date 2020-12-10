@@ -1,22 +1,43 @@
-body{
-    margin:0; 
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  font-size: 10px;
+ }
+
+body { 
+ box-sizing: border-box;
+ background-color: black;
   }
+button{
+  cursor: pointer;
+}
   #welcome{
-    display: block;
+    display: flex;
     height: 100vh;
     width: 100vw;
     position: absolute;
     background-color: rgba(0,0,0,0.6);
     z-index: 400;
+    justify-content: center;
+    align-items: center;
   }
   #modal{
-    position: fixed;
-    top: 30%;
-    left: 30%;
     width: 500px;
-    background: white;
-    padding: 25px;
+    background: rgba(255,255,255,0.9);
+    padding: 2.5rem;
     text-align: center;
+    font-size: 2rem;
+    line-height: 5rem;
+  }
+  #modal button{
+    padding: 1rem;
+
+
   }
   #instructions{
     display: none;
@@ -29,59 +50,77 @@ body{
     
     position: fixed;
     top: 5px;
-    left: 5px;
-    height: 45px;
-    width: 125px;
-    padding:10px;
-    margin: 10px;
+    left: 20px;
+    height: 75px;
+    width: 150px;
+    padding:15px;
     border: 2px dashed black;
     background-color: white;
     z-index: 100;
-  }
-  #player-health h4{
-    padding: 5px;
-    display:inline; 
+    font-size: 1.7rem;
   }
   #health-bar{
     display:block;
     width:100px;
     height: 10px;
     margin: 6px;
+    padding: 10px;
     background-color: red;
   }
 
   #current-list{
     position: absolute;
+    padding: 10px;
     top: 95px;
     left: 20px;
-    width: 125px;
+    width: 150px;
     height: 200px;
-    background-color: white;
+    background-color: lightyellow;
     z-index: 100;
+    font-size: 2rem;
+  }
+  #current-list li{
+    text-align: center;
+    list-style: none;
+    
   }
   /**************************
   Battle Screen
   ******************************/
   #battle{
     display:none;
+   
   
   }
   #attacking-monster{
     display: block;
     position: fixed;
     background-size: contain;
+    background-repeat: no-repeat;
     top: 10px;
-    right: 25%;
-    border: 1px solid black;
-    width:300px;
+    right: 15%;
+    width: 300px;
     height: 500px;
-    background-color:pink;
+   
+  }
+  #monster-health{
+    display:block;
+    position: absolute;
+    top: 0;
+    right: 0%;
+    width:100px;
+    height: 10px;
+    margin: 6px;
+    padding: 10px;
+    background-color: purple;
+   
+
   }
   #player-avatar{
     display: block;
     position: fixed;
     bottom: 0px;
-    left: 10%;
+    left: 15%;
     border: 1px solid black;
     width:300px;
     height: 500px;
@@ -91,16 +130,61 @@ body{
     position: fixed;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     bottom: 0;
-    height: 55px;
+    height: 12rem;
     padding: 10px;
-    background-color:blue;
+    background-color:lightyellow;
   }
-  
+  #game-text{
+    display: block;
+    width: 50%;
+    margin: 0% 25%;
+    height: 60px;
+    background-color: aliceblue;
+    text-align: center;
+    font-size: 2rem;
+  }
   #battle-options button{
+    margin: 5px;;
     width: 100px;
     padding: 7px;
+  }
+  /* .fireball-animation-object{
+    display:none;
+    opacity: 0;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color:red;
+    left: 10%;
+    bottom: 10%;
+    z-index: 300;
+  }
+.fireball-animation{
+    opacity: 1;
+    animation-name: fireball;
+    animation-duration: 2.6s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+  } */
+
+  @keyframes fireball {
+    0%{
+      transform: scale(.0);
+      opacity: 0;
+    }
+    99%{
+      transform: scale(1.2);
+      left: 70%;
+      bottom: 80%;
+      opacity: 1;
+    }
+    100%{
+      opacity: 0;
+    }
   }
   /**********
   Navagation buttons
@@ -118,10 +202,11 @@ body{
     
   }
   #move-room-buttons button{
-    width: 200px;
-    height: 400px;
+    width: 300px;
+    height: 600px;
     background-color: black;
     color: red;
+    clip-path:polygon(0%30%, 50% 0%, 100% 30%, 100% 100%, 0% 100%);  
   }
 
   /****************

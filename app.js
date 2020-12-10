@@ -6,17 +6,21 @@ $(()=>{
           this.name = name;
           this.health = health;
           this.damage = damage;
+          this.active = undefined;
           
       }
       monsterAttack(player,game){
-         
+        const $gameText = $('#game-text-2');
+        const $prevGameText = $('#game-text-1');
           let chance = Math.floor(Math.random()*Math.floor(2));
           if(chance === 0){// this is the monsters attack. It randomly decides if it hit or misses
-            console.log( `${this.name}'s attack missed`);
+            $prevGameText.text($gameText.text());
+            $gameText.text( `${this.name}'s attack missed`);
           } else {
             player.health -= this.damage;
             $('#health-bar').css('width',`${player.health}px`);
-            console.log(`${this.name}'s attack hit the players health is ${player.health}`);
+            $prevGameText.text($gameText.text());
+            $gameText.text(`${this.name}'s attack hit the players health is ${player.health}`).delay(7000);
           }
           if(player.health <= 0){
             game.gameOver();
@@ -31,30 +35,45 @@ $(()=>{
   
       }
       fireball(monster,game){
+        const $gameText = $('#game-text-2');
+        const $prevGameText = $('#game-text-1');
       monster.active.health -= 10;
-      console.log(`the players fireball did 10 damage the ${monster.active.name} health is now ${monster.active.health}`);
-          game.checkBattle(monster,this); //im here!!
+      // $('#fireball-animation-object').css('display','block');
+      // $('#fireball-animation-object').addClass('fireball-animation');
+      $prevGameText.text($gameText.text());
+      $gameText.text(`the players fireball did 10 damage the ${monster.active.name} health is now ${monster.active.health}`);
+      $('#monster-health').css('width',`${monster.active.health}px`);    
+      game.checkBattle(monster,this); 
           if (monster.active !== undefined){
           monster.active.monsterAttack(this,game);
         }
       }
         heal(monster,game){
+          let $gameText = $('#game-text-2');
+          let $prevGameText = $('#game-text-1');
           if (this.health < 100){
-          this.health += 15;
+          this.health += 20;
           $('#health-bar').css('width',`${this.health}px`);
+          $prevGameText.text($gameText.text());
+          $gameText.text('You gained 20 health points')
           } else {
-            console.log('your health is full');
+            $prevGameText.text($gameText.text());
+            $gameText.text('your health is full');
           }
+         
           monster.active.monsterAttack(this,game);
         }
         run(monster,game){
+          let $gameText = $('#game-text-2');
+          let $prevGameText = $('#game-text-1');
           let chance = Math.floor(Math.random()*Math.floor(2));
             if (chance === 0){
               $('#battle').css('display','none');
               $('#move-room-buttons').css('display','flex');
               monster.active = undefined;
             } else{
-              console.log('you could not get away');
+              $prevGameText.text($gameText.text());
+              $gameText.text('you could not get away');
               monster.active.monsterAttack(this,game);
             }
         
@@ -108,29 +127,44 @@ $(()=>{
       }
       startBattle(monster){
           const $enemyContainer = $('#attacking-monster');
+          let $gameText = $('#game-text-2');
+          let $prevGameText = $('#game-text-1');
+          $prevGameText.text('')
           $('#battle').css('display','block');
           $('#move-room-buttons').css('display','none');
           switch(monster.active.name){
             case 'Skeleton':
             $enemyContainer.css('background-image','url("img/skeleton.jpeg")')
+            $prevGameText.text('');
+            $gameText.text(`A ${monster.active.name} has attacked!`)
             break
             case 'Demon':
-            $enemyContainer.css('background-image','url("img/demon.jpg")') 
+            $enemyContainer.css('background-image','url("img/demon.png")') 
+            $prevGameText.text('');
+            $gameText.text(`A ${monster.active.name} has attacked!`)
             break
             case 'Serpent':
-            $enemyContainer.css('background-image','url("img/serpent.jpg")') 
+            $enemyContainer.css('background-image','url("img/serpent.png")')
+            $prevGameText.text('');
+            $gameText.text(`A ${monster.active.name} has attacked!`) 
             break 
           }
+          $('#monster-health').css('width',`${monster.active.health}px`);  
         }
         checkBattle(monster,player){
+          let $gameText = $('#game-text-2');
+          let $prevGameText = $('#game-text-1');
           if (monster.active.health <= 0){
-            console.log(`the ${monster.active.name} has been slain`)
+            $prevGameText.text($gameText.text());
+            $gameText.text(`the ${monster.active.name} has been slain`);
             monster.active.enemy = undefined;
             $('#battle').css('display','none');
             $('#move-room-buttons').css('display','flex');
           }
           if (player.health <= 0){
+              
               this.gameOver();
+              
           }
         }
         checkPattern(){//this.pattern, this.winPattern
@@ -159,6 +193,7 @@ $(()=>{
         }
         gameOver(){
           $("#gameover-screen").css('display','flex');
+          $('#health-bar').css('display','none');
         }
         win(){
           $('#win-screen').css('display','flex');
@@ -210,7 +245,9 @@ $(()=>{
       newPlayer.fireball(newMonster,newGame)
     });
   
-    $('#run').on('click', newPlayer.run);
+    $('#run').on('click', () =>{
+        newPlayer.run(newMonster,newGame)
+    });
   
     $('#heal').on('click', ()=>{
       newPlayer.heal(newMonster,newGame)
@@ -221,6 +258,7 @@ $(()=>{
       newGame.pattern = [];
       newMonster.active = undefined;
       newPlayer.health = 100;
+      $('#health-bar').css('display','block');
       $('#rooms-visited').empty();
       $('#health-bar').css('width',`${newPlayer.health}px`);
       $("#gameover-screen").css('display','none');
