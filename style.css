@@ -1,3 +1,8 @@
+/* 
+font-family: 'Lato', sans-serif;
+font-family: 'Righteous', cursive;
+ */
+
 *,
 *::before,
 *::after{
@@ -12,6 +17,7 @@ html {
 body { 
  box-sizing: border-box;
  background-color: black;
+ font-family: 'Lato', sans-serif;
   }
 button{
   cursor: pointer;
@@ -39,6 +45,7 @@ button{
   #modal h1{
     color: red;
     text-shadow: 1px 1px 2px blue;
+    font-family: 'Righteous', cursive;
   }
   #modal button{
     padding: 1rem;
@@ -57,7 +64,7 @@ button{
     position: fixed;
     top: 5px;
     left: 20px;
-    height: 75px;
+    height: 125px;
     width: 150px;
     padding:15px;
     border: 5px dashed gray;
@@ -65,6 +72,9 @@ button{
     z-index: 100;
     font-size: 1.7rem;
     box-shadow: 2px 2px 3px black;
+  }
+  #player-health h4{
+    font-family: 'Righteous', cursive;
   }
   #health-bar{
     display:block;
@@ -78,7 +88,7 @@ button{
   #current-list{
     position: absolute;
     padding: 10px;
-    top: 95px;
+    top:175px;
     left: 20px;
     width: 150px;
     height: 200px;
@@ -160,6 +170,7 @@ button{
     font-size: 2rem;
   }
   #battle-options button{
+    font-family: 'Righteous', cursive;
     margin: 5px;;
     width: 7%;
     height: 90%;
