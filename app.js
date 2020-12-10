@@ -19,6 +19,7 @@ $(()=>{
           } else {
             player.health -= this.damage;
             $('#health-bar').css('width',`${player.health}px`);
+            $('#current-health').text(player.health);
             $prevGameText.text($gameText.text());
             $gameText.text(`${this.name}'s attack hit the players health is ${player.health}`).delay(7000);
           }
@@ -41,7 +42,7 @@ $(()=>{
       // $('#fireball-animation-object').css('display','block');
       // $('#fireball-animation-object').addClass('fireball-animation');
       $prevGameText.text($gameText.text());
-      $gameText.text(`the players fireball did 10 damage the ${monster.active.name} health is now ${monster.active.health}`);
+      $gameText.text(`You cast fireball did 10 damage. the ${monster.active.name}'s health is now ${monster.active.health}`);
       $('#monster-health').css('width',`${monster.active.health}px`);    
       game.checkBattle(monster,this); 
           if (monster.active !== undefined){
@@ -51,9 +52,15 @@ $(()=>{
         heal(monster,game){
           let $gameText = $('#game-text-2');
           let $prevGameText = $('#game-text-1');
-          if (this.health < 100){
+          if (this.health >= 80){
+              this.health = 100;
+              $('#health-bar').css('width',`${this.health}px`);
+              $('#current-health').text(this.health);
+            }
+            if (this.health < 100){
           this.health += 20;
           $('#health-bar').css('width',`${this.health}px`);
+          $('#current-health').text(this.health);
           $prevGameText.text($gameText.text());
           $gameText.text('You cast heal and gained 20 health points')
           } else {
@@ -194,6 +201,7 @@ $(()=>{
         gameOver(){
           $("#gameover-screen").css('display','flex');
           $('#health-bar').css('display','none');
+          $('#current-health').text('0');
         }
         win(){
           $('#win-screen').css('display','flex');

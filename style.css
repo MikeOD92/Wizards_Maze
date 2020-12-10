@@ -28,11 +28,17 @@ button{
   }
   #modal{
     width: 500px;
-    background: rgba(255,255,255,0.9);
+    border: 5px dashed gray;
+    background-color: #d9d7ce;
+    color:black;
     padding: 2.5rem;
     text-align: center;
     font-size: 2rem;
     line-height: 5rem;
+  }
+  #modal h1{
+    color: red;
+    text-shadow: 1px 1px 2px blue;
   }
   #modal button{
     padding: 1rem;
@@ -54,10 +60,11 @@ button{
     height: 75px;
     width: 150px;
     padding:15px;
-    border: 2px dashed black;
-    background-color: white;
+    border: 5px dashed gray;
+    background-color: #d9d7ce;
     z-index: 100;
     font-size: 1.7rem;
+    box-shadow: 2px 2px 3px black;
   }
   #health-bar{
     display:block;
@@ -75,9 +82,12 @@ button{
     left: 20px;
     width: 150px;
     height: 200px;
-    background-color: lightyellow;
+    background-color: #d9d7ce;
     z-index: 100;
     font-size: 2rem;
+    border: 5px dashed gray;
+    box-shadow: 2px 2px 3px black;
+   
   }
   #current-list li{
     text-align: center;
@@ -131,24 +141,28 @@ button{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    align-items: center;
     bottom: 0;
     height: 12rem;
     padding: 10px;
-    background-color:lightyellow;
+    border: 5px dashed gray;
+    background-color: #d9d7ce;
   }
   #game-text{
     display: block;
     width: 50%;
-    margin: 0% 25%;
-    height: 60px;
+    margin: 0% 25% 0% 0%;
+    height: 90%;
     background-color: aliceblue;
     text-align: center;
+    line-height: 4rem;
     font-size: 2rem;
   }
   #battle-options button{
     margin: 5px;;
-    width: 100px;
+    width: 7%;
+    height: 90%;
     padding: 7px;
   }
   /* .fireball-animation-object{
@@ -203,8 +217,9 @@ button{
   }
   #move-room-buttons button{
     width: 300px;
-    height: 600px;
+    height: 500px;
     background-color: black;
+    
     color: red;
     clip-path:polygon(0%30%, 50% 0%, 100% 30%, 100% 100%, 0% 100%);  
   }
