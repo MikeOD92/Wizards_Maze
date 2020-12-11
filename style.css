@@ -268,23 +268,30 @@ button{
     align-items: center;
     width: 100vw;
     height: 100vh;
+    background: url(img/game_over_wall.jpg);
     background-color: black;
     
     
   }
   #gameover-screen h1{
-    color: rgb(18, 198, 18);
+    color: red;
     font-size: 72px;
-    text-shadow: 2px 2px 3px indianred;
+    text-shadow: 2px 2px 3px black;
     letter-spacing: 2.7rem;
   }
   #gameover-screen button{
-    padding: 25px;
+    
     font-family: 'Righteous', cursive;
-    border: 3px dashed gray;
-    background-color: #d9d7ce;
     margin: 40px;
     font-size: 1.5rem;
+    letter-spacing: 1.1rem;
+    line-height: 4rem;
+    width: 200px;
+    height: 400px;
+    color: white;
+    background-color: black;
+    bottom: 0;
+    clip-path:polygon(0%30%, 50% 0%, 100% 30%, 100% 100%, 0% 100%);  
   }
 
   #win-screen{
@@ -299,7 +306,7 @@ button{
     height: 100vh;
     color: black;
     background-image: url(img/stone_wall.jpg);
-    background-size: contain;
+    background-size: cover;
   }
   #win-screen h1{
     margin: 15px;
@@ -312,6 +319,8 @@ button{
   #win-screen button{
     font-family: 'Righteous', cursive;
     font-size: 1.5rem;
+    letter-spacing: 1.1rem;
+    line-height: 4rem;
     align-self: flex-start;
     justify-content: flex-end;
     padding: 25px;

@@ -126,6 +126,9 @@ $(()=>{
       spawnMonster(monster){
           //randomly decide if monsters are in new room or not
           let chance = Math.floor(Math.random()* Math.floor(2));
+          if(this.pattern.length >= 6){
+            chance = 1;
+          }
             // if chance = 0 generate a random monster as this.enemy
           if( chance === 0 ){
             let ranName = monster.monsterTypes[Math.floor(Math.random() * Math.floor(monster.monsterTypes.length))];
@@ -189,13 +192,13 @@ $(()=>{
         }
         checkPattern(){//this.pattern, this.winPattern
           let checker = undefined;
-          console.log(this.winPattern)
-          console.log(this.pattern);
+          //console.log(this.winPattern)
+          //console.log(this.pattern);
           
           if(this.winPattern.length !== this.pattern.length){
             checker = false;
           } else {
-            for(let i = 0; i < this.winPattern.length-1; i++){
+            for(let i = 0; i < this.winPattern.length; i++){
               if(this.winPattern[i] !== this.pattern[i]){
                 checker = false;
                 return;
@@ -281,6 +284,7 @@ $(()=>{
       newMonster.active = undefined;
       newPlayer.health = 100;
       $('#health-bar').css('display','block');
+      $('#current-health').text('100');
       $('#rooms-visited').empty();
       $('#health-bar').css('width',`${newPlayer.health}px`);
       $("#gameover-screen").css('display','none');
