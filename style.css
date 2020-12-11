@@ -298,17 +298,20 @@ button{
     width: 100vw;
     height: 100vh;
     color: black;
-    background-image: url(img/wall.jpg);
+    background-image: url(img/stone_wall.jpg);
+    background-size: contain;
   }
   #win-screen h1{
     margin: 15px;
     margin-right: 10%;
     font-size:56px;
     font-family: 'Righteous', cursive;
-    color: rgb(227, 179, 23);
-    text-shadow: 2px 2px 3px rgb(18, 198, 18);
+    color: white;
+    text-shadow: 2px 2px 3px red;;
   }
   #win-screen button{
+    font-family: 'Righteous', cursive;
+    font-size: 1.5rem;
     align-self: flex-start;
     justify-content: flex-end;
     padding: 25px;

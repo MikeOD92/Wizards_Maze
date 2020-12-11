@@ -93,8 +93,16 @@ $(()=>{
       constructor(){
           this.pattern = [];
           this.winPattern = ["left", "right", "right", "left", "left", "left"];
-          
+          //this.winPattern = [];// this if for a random pattern;
       }
+      // setNewPattern(){
+      //   let arrayOptions = ['right','left'];
+      //   for ( let i = 0; i < 6; i++){
+      //     let chance = Math.floor(Math.random() * Math.floor(2));
+      //     this.winPattern.push(arrayOptions[chance]);
+      //   }
+
+      // }
       newRoom(monster){
           this.checkPattern(); // check the winstate of the game
           monster.active = undefined;
@@ -156,7 +164,7 @@ $(()=>{
             $gameText.text(`A ${monster.active.name} has attacked!`) 
             break 
             case 'Spider':
-            $enemyContainer.css('background-image','url("img/serpent.png")') /// need to add spider img
+            $enemyContainer.css('background-image','url("img/spider.jpg")') /// need to add spider img
             $prevGameText.text('');
             $gameText.text(`A ${monster.active.name} has attacked!`) 
               
@@ -207,12 +215,13 @@ $(()=>{
           $("#gameover-screen").css('display','flex');
           $('#health-bar').css('display','none');
           $('#current-health').text('0');
+          //this.setNewPattern();
+          
         }
         win(){
           $('#win-screen').css('display','flex');
           $('#battle').css('display','none');
-  
-  
+          //this.setNewPattern();
   }
   }
       
