@@ -2,7 +2,7 @@ $(()=>{
     
   class Monster {
       constructor(name,health,damage){
-          this.monsterTypes = ['Demon','Skeleton','Serpent']; 
+          this.monsterTypes = ['Demon','Skeleton','Serpent','Spider']; 
           this.name = name;
           this.health = health;
           this.damage = damage;
@@ -117,10 +117,10 @@ $(()=>{
       }
       spawnMonster(monster){
           //randomly decide if monsters are in new room or not
-          let chance = Math.floor(Math.random()* Math.floor(3));
+          let chance = Math.floor(Math.random()* Math.floor(2));
             // if chance = 0 generate a random monster as this.enemy
           if( chance === 0 ){
-            let ranName = monster.monsterTypes[Math.floor(Math.random() * Math.floor(3))];
+            let ranName = monster.monsterTypes[Math.floor(Math.random() * Math.floor(monster.monsterTypes.length))];
             let ranHealth = 10 + Math.floor(Math.random()* Math.floor(50)); 
             let ranDamage = 16 + Math.floor(Math.random()* Math.floor(10));
             
@@ -155,6 +155,11 @@ $(()=>{
             $prevGameText.text('');
             $gameText.text(`A ${monster.active.name} has attacked!`) 
             break 
+            case 'Spider':
+            $enemyContainer.css('background-image','url("img/serpent.png")') /// need to add spider img
+            $prevGameText.text('');
+            $gameText.text(`A ${monster.active.name} has attacked!`) 
+              
           }
           $('#monster-health').css('width',`${monster.active.health}px`);  
         }

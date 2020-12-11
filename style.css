@@ -43,8 +43,8 @@ button{
     line-height: 5rem;
   }
   #modal h1{
-    color: red;
-    text-shadow: 1px 1px 2px blue;
+    color: rgb(215, 174, 71);
+    text-shadow: 1px 1px 1px rgb(223, 58, 232);
     font-family: 'Righteous', cursive;
   }
   #modal button{
@@ -72,6 +72,7 @@ button{
     z-index: 100;
     font-size: 1.7rem;
     box-shadow: 2px 2px 3px black;
+    opacity: 0.9;
   }
   #player-health h4{
     font-family: 'Righteous', cursive;
@@ -84,9 +85,11 @@ button{
     padding: 10px;
     background-color: red;
   }
+  
 
   #current-list{
     position: absolute;
+    font-family: 'Righteous', cursive;
     padding: 10px;
     top:175px;
     left: 20px;
@@ -97,11 +100,13 @@ button{
     font-size: 2rem;
     border: 5px dashed gray;
     box-shadow: 2px 2px 3px black;
+    opacity: 0.9;
    
   }
   #current-list li{
     text-align: center;
     list-style: none;
+    letter-spacing: 0.2rem;
     
   }
   /**************************
@@ -123,6 +128,17 @@ button{
     height: 500px;
    
   }
+  #monster-health-container{
+    display:block;
+    position: absolute;
+    top: 0;
+    right: 0%;
+    width:70px;
+    height: 10px;
+    margin: 6px;
+    padding: 15px;
+    border: solid white 1px;
+  }
   #monster-health{
     display:block;
     position: absolute;
@@ -133,8 +149,6 @@ button{
     margin: 6px;
     padding: 10px;
     background-color: purple;
-   
-
   }
   #player-avatar{
     display: block;
@@ -165,9 +179,12 @@ button{
     margin: 0% 25% 0% 0%;
     height: 90%;
     background-color: aliceblue;
-    text-align: center;
+    text-align: left;
     line-height: 4rem;
     font-size: 2rem;
+  }
+  #game-text-1, #game-text-2{
+    margin-left: 20px;
   }
   #battle-options button{
     font-family: 'Righteous', cursive;
@@ -230,8 +247,9 @@ button{
     width: 300px;
     height: 500px;
     background-color: black;
-    
-    color: red;
+    font-size: 3rem;
+    font-family: 'Righteous', cursive;
+    color: rgb(215, 174, 71);
     clip-path:polygon(0%30%, 50% 0%, 100% 30%, 100% 100%, 0% 100%);  
   }
 
@@ -239,39 +257,67 @@ button{
   Game over Screen
   *****************/
 
+    
   #gameover-screen{
+    font-family: 'Righteous', cursive;
     position: fixed;
     top: 0;
     display: none;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
     background-color: black;
-    color: green;
+    
     
   }
   #gameover-screen h1{
+    color: rgb(18, 198, 18);
     font-size: 72px;
+    text-shadow: 2px 2px 3px indianred;
+    letter-spacing: 2.7rem;
   }
   #gameover-screen button{
-    padding: 15px;
-    background-color: lightgrey;
-    color: red;
-    margin: 20px;
+    padding: 25px;
+    font-family: 'Righteous', cursive;
+    border: 3px dashed gray;
+    background-color: #d9d7ce;
+    margin: 40px;
+    font-size: 1.5rem;
   }
 
   #win-screen{
     position: fixed;
     top: 0;
     display: none;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+    text-align: right;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(227, 179, 23);
     color: black;
-
+    background-image: url(img/wall.jpg);
+  }
+  #win-screen h1{
+    margin: 15px;
+    margin-right: 10%;
+    font-size:56px;
+    font-family: 'Righteous', cursive;
+    color: rgb(227, 179, 23);
+    text-shadow: 2px 2px 3px rgb(18, 198, 18);
+  }
+  #win-screen button{
+    align-self: flex-start;
+    justify-content: flex-end;
+    padding: 25px;
+    margin-left: 20%;
+    width: 200px;
+    height: 400px;
+    color: white;
+    background-color: black;
+    z-index: 3;
+    bottom: 0;
+    clip-path:polygon(0%30%, 50% 0%, 100% 30%, 100% 100%, 0% 100%);  
   }
