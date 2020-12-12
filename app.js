@@ -126,7 +126,7 @@ $(()=>{
       spawnMonster(monster){
           //randomly decide if monsters are in new room or not
           let chance = Math.floor(Math.random()* Math.floor(2));
-          if(this.pattern.length >= 6){
+          if(this.pattern.length >= 6){ // makes sure no monster is generated on the final move of a path
             chance = 1;
           }
             // if chance = 0 generate a random monster as this.enemy
@@ -157,7 +157,7 @@ $(()=>{
             $gameText.text(`A ${monster.active.name} has attacked!`)
             break
             case 'Demon':
-            $enemyContainer.css('background-image','url("img/demon.png")') 
+            $enemyContainer.css('background-image','url("img/demon2.png")') 
             $prevGameText.text('');
             $gameText.text(`A ${monster.active.name} has attacked!`)
             break
@@ -167,7 +167,7 @@ $(()=>{
             $gameText.text(`A ${monster.active.name} has attacked!`) 
             break 
             case 'Giant Spider':
-            $enemyContainer.css('background-image','url("img/spider.jpg")') /// need to add spider img
+            $enemyContainer.css('background-image','url("img/spider.jpg")')
             $prevGameText.text('');
             $gameText.text(`A ${monster.active.name} has attacked!`) 
               
