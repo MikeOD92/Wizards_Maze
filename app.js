@@ -2,7 +2,7 @@ $(()=>{
     
   class Monster {
       constructor(name,health,damage){
-          this.monsterTypes = ['Demon','Skeleton','Serpent','Spider']; 
+          this.monsterTypes = ['Demon','Skeleton','Serpent','Giant Spider']; 
           this.name = name;
           this.health = health;
           this.damage = damage;
@@ -132,7 +132,7 @@ $(()=>{
             // if chance = 0 generate a random monster as this.enemy
           if( chance === 0 ){
             let ranName = monster.monsterTypes[Math.floor(Math.random() * Math.floor(monster.monsterTypes.length))];
-            let ranHealth = 10 + Math.floor(Math.random()* Math.floor(50)); 
+            let ranHealth = 10 + Math.floor(Math.random()* Math.floor(60)); 
             let ranDamage = 16 + Math.floor(Math.random()* Math.floor(10));
             
             const baddy1 = new Monster(ranName,ranHealth,ranDamage);
@@ -166,7 +166,7 @@ $(()=>{
             $prevGameText.text('');
             $gameText.text(`A ${monster.active.name} has attacked!`) 
             break 
-            case 'Spider':
+            case 'Giant Spider':
             $enemyContainer.css('background-image','url("img/spider.jpg")') /// need to add spider img
             $prevGameText.text('');
             $gameText.text(`A ${monster.active.name} has attacked!`) 
