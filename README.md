@@ -16,7 +16,7 @@ When a player enters a new room a random enemy may be generated. When an enemy i
 ## Approach:
 Original idea went through a few variations.
 Planned out basic play screens on paper and figured out necessary buttons. Created three objects to store data and interact. 
---------------------
+
 + The player object which has the relevant functions, and the players health.
 + A Game object which does most of the heavy lifting and stores the game win state.
 + A Monster class which the game calls to randomly generate monsters. Holds the Attack for the monster to attack
