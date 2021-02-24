@@ -43,7 +43,7 @@ $(()=>{
       // $('#fireball-animation-object').addClass('fireball-animation');
       $prevGameText.text($gameText.text());
       $gameText.text(`You cast fireball did 10 damage. the ${monster.active.name}'s health is now ${monster.active.health}`);
-      $('#monster-health').css('width',`${monster.active.health}px`);    
+      $('#monster-health').css('width',`${monster.active.health}%`);    
       game.checkBattle(monster,this); 
           if (monster.active !== undefined){
           monster.active.monsterAttack(this,game);

@@ -36,6 +36,7 @@ button{
     width: 500px;
     border: 5px dashed gray;
     background-color: #d9d7ce;
+    background-size: cover;
     color:black;
     padding: 2.5rem;
     text-align: center;
@@ -136,25 +137,24 @@ button{
    
   }
   #monster-health-container{
+    box-sizing: border-box;
     display:block;
     position: absolute;
     top: 0;
     right: 0%;
-    width:70px;
-    height: 10px;
+    width: 70px;
+    height: 25px;
     margin: 6px;
-    padding: 15px;
     border: solid white 1px;
   }
   #monster-health{
+    box-sizing: border-box;
     display:block;
     position: absolute;
     top: 0;
     right: 0%;
-    width:100px;
-    height: 10px;
-    margin: 6px;
-    padding: 10px;
+    max-width: 95%;
+    height: 23px;
     background-color: purple;
   }
   #player-avatar{
