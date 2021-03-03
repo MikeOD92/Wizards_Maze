@@ -43,6 +43,8 @@ $(()=>{
       // $('#fireball-animation-object').addClass('fireball-animation');
       $prevGameText.text($gameText.text());
       $gameText.text(`You cast fireball did 10 damage. the ${monster.active.name}'s health is now ${monster.active.health}`);
+      // $gameText.removeClass('game-text-ready').addClass('game-text-active');//////////////// this is where we first tried to implemnt the text animation
+      // $prevGameText.removeClass('game-text-ready').addClass('game-text-active');
       $('#monster-health').css('width',`${monster.active.health}%`);    
       game.checkBattle(monster,this); 
           if (monster.active !== undefined){

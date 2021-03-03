@@ -79,7 +79,7 @@ button{
     z-index: 100;
     font-size: 1.7rem;
     box-shadow: 2px 2px 3px black;
-    opacity: 0.9;
+    
   }
   #player-health h4{
     font-family: 'Righteous', cursive;
@@ -108,7 +108,6 @@ button{
     background-color: #d9d7ce;
     border: 5px dashed gray;
     box-shadow: 2px 2px 3px black;
-    opacity: 0.9;
    
   }
   #current-list li{
@@ -192,8 +191,28 @@ button{
     line-height: 4rem;
     font-size: 2rem;
   }
-  #game-text-1, #game-text-2{
+
+  /* THis is where we start play with text animations 
+  I think i need to figure out how to a manage the animations while also 
+  switching the text around between $gameText and $prevGameText 1 & 2 */
+  /* .game-text-ready{
+    position: absolute;
+    opacity: 0;
+    width: 0%;
     margin-left: 20px;
+  }
+  .game-text-active{
+    position: absolute;
+    overflow: hidden;
+    opacity: 1;
+    width: 0;
+    margin-left: 20px;
+    animation: 
+      read 2.5s steps(25, end);
+  } */
+  @keyframes read{
+    0% {width: 0;}
+    100% { width: 100%}
   }
   #battle-options button{
     font-family: 'Righteous', cursive;
@@ -247,15 +266,15 @@ button{
     width: 100%;
     height: 100vh;
     justify-content: space-around;
-    background-image: url(img/wall.jpg);
+    background-image: url(img/wall.png);
     background-size: cover;
     
     
-  }
+  } 
   #move-room-buttons button{
     width: 300px;
     height: 500px;
-    background-color: black;
+    background: black;
     font-size: 3rem;
     font-family: 'Righteous', cursive;
     color: rgb(215, 174, 71);
