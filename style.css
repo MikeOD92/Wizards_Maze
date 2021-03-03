@@ -195,7 +195,7 @@ button{
   /* THis is where we start play with text animations 
   I think i need to figure out how to a manage the animations while also 
   switching the text around between $gameText and $prevGameText 1 & 2 */
-  /* .game-text-ready{
+  .game-text-ready{
     position: absolute;
     opacity: 0;
     width: 0%;
@@ -209,7 +209,8 @@ button{
     margin-left: 20px;
     animation: 
       read 2.5s steps(25, end);
-  } */
+    
+  }
   @keyframes read{
     0% {width: 0;}
     100% { width: 100%}

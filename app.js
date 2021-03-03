@@ -12,16 +12,27 @@ $(()=>{
       monsterAttack(player,game){
         const $gameText = $('#game-text-2');
         const $prevGameText = $('#game-text-1');
+        $gameText.removeClass('game-text-active').addClass('game-text-ready');
+        $prevGameText.removeClass('game-text-active').addClass('game-text-ready');
+
           let chance = Math.floor(Math.random()*Math.floor(2));
           if(chance === 0){// this is the monsters attack. It randomly decides if it hit or misses
             $prevGameText.text($gameText.text());
-            $gameText.text( `${this.name}'s attack missed`);
+            $gameText.text( `The ${this.name}'s attack missed`);
+            $gameText.width();
+            $prevGameText.width();
+            $gameText.removeClass('game-text-ready').addClass('game-text-active');
+            $prevGameText.removeClass('game-text-ready').addClass('game-text-active');
           } else {
             player.health -= this.damage;
             $('#health-bar').css('width',`${player.health}px`);
             $('#current-health').text(player.health);
             $prevGameText.text($gameText.text());
-            $gameText.text(`${this.name}'s attack hit the players health is ${player.health}`).delay(7000);
+            $gameText.text(`The ${this.name}'s attack hit the players health is ${player.health}`).delay(7000);
+            $gameText.width();
+            $prevGameText.width();
+            $gameText.removeClass('game-text-ready').addClass('game-text-active');
+            $prevGameText.removeClass('game-text-ready').addClass('game-text-active');
           }
           if(player.health <= 0){
             game.gameOver();
@@ -39,16 +50,22 @@ $(()=>{
         const $gameText = $('#game-text-2');
         const $prevGameText = $('#game-text-1');
       monster.active.health -= 10;
+      $gameText.removeClass('game-text-active').addClass('game-text-ready');
+      $prevGameText.removeClass('game-text-active').addClass('game-text-ready');
       // $('#fireball-animation-object').css('display','block');
       // $('#fireball-animation-object').addClass('fireball-animation');
       $prevGameText.text($gameText.text());
       $gameText.text(`You cast fireball did 10 damage. the ${monster.active.name}'s health is now ${monster.active.health}`);
-      // $gameText.removeClass('game-text-ready').addClass('game-text-active');//////////////// this is where we first tried to implemnt the text animation
-      // $prevGameText.removeClass('game-text-ready').addClass('game-text-active');
+      // trigger re-flow
+      $gameText.width();
+      $prevGameText.width();
+      // this seems to work, but i need some delay before the enemey attack appears on screen
+      $gameText.removeClass('game-text-ready').addClass('game-text-active');
+      $prevGameText.removeClass('game-text-ready').addClass('game-text-active');
       $('#monster-health').css('width',`${monster.active.health}%`);    
       game.checkBattle(monster,this); 
           if (monster.active !== undefined){
-          monster.active.monsterAttack(this,game);
+           monster.active.monsterAttack(this,game);
         }
       }
         heal(monster,game){
@@ -63,9 +80,15 @@ $(()=>{
           this.health += 20;
           $('#health-bar').css('width',`${this.health}px`);
           $('#current-health').text(this.health);
+
+          $gameText.width();
+          $prevGameText.width();
+
           $prevGameText.text($gameText.text());
           $gameText.text('You cast heal and gained 20 health points')
           } else {
+            $gameText.width();
+            $prevGameText.width();
             $prevGameText.text($gameText.text());
             $gameText.text('your health is full');
           }
@@ -81,9 +104,11 @@ $(()=>{
               $('#move-room-buttons').css('display','flex');
               monster.active = undefined;
             } else{
+              $gameText.width();
+              $prevGameText.width();
               $prevGameText.text($gameText.text());
               $gameText.text('you could not get away');
-              monster.active.monsterAttack(this,game);
+              wmonster.active.monsterAttack(this,game);
             }
         
         }
@@ -149,6 +174,8 @@ $(()=>{
           const $enemyContainer = $('#attacking-monster');
           let $gameText = $('#game-text-2');
           let $prevGameText = $('#game-text-1');
+          $gameText.removeClass('game-text-active').addClass('game-text-ready');
+          $prevGameText.removeClass('game-text-active').addClass('game-text-ready');
           $prevGameText.text('')
           $('#battle').css('display','block');
           $('#move-room-buttons').css('display','none');
@@ -157,21 +184,29 @@ $(()=>{
             $enemyContainer.css('background-image','url("img/skeleton.jpeg")')
             $prevGameText.text('');
             $gameText.text(`A ${monster.active.name} has attacked!`)
+            $gameText.removeClass('game-text-ready').addClass('game-text-active');
+            $prevGameText.removeClass('game-text-ready').addClass('game-text-active');
             break
             case 'Demon':
             $enemyContainer.css('background-image','url("img/demon2.png")') 
             $prevGameText.text('');
             $gameText.text(`A ${monster.active.name} has attacked!`)
+            $gameText.removeClass('game-text-ready').addClass('game-text-active');
+            $prevGameText.removeClass('game-text-ready').addClass('game-text-active');
             break
             case 'Serpent':
             $enemyContainer.css('background-image','url("img/serpent.png")')
             $prevGameText.text('');
-            $gameText.text(`A ${monster.active.name} has attacked!`) 
+            $gameText.text(`A ${monster.active.name} has attacked!`)
+            $gameText.removeClass('game-text-ready').addClass('game-text-active').set;
+            $prevGameText.removeClass('game-text-ready').addClass('game-text-active');
             break 
             case 'Giant Spider':
             $enemyContainer.css('background-image','url("img/spider.jpg")')
             $prevGameText.text('');
             $gameText.text(`A ${monster.active.name} has attacked!`) 
+            $gameText.removeClass('game-text-ready').addClass('game-text-active');
+            $prevGameText.removeClass('game-text-ready').addClass('game-text-active');
               
           }
           $('#monster-health').css('width',`${monster.active.health}px`);  
@@ -180,8 +215,14 @@ $(()=>{
           let $gameText = $('#game-text-2');
           let $prevGameText = $('#game-text-1');
           if (monster.active.health <= 0){
+            $gameText.removeClass('game-text-active').addClass('game-text-ready');
+            $prevGameText.removeClass('game-text-active').addClass('game-text-ready');
             $prevGameText.text($gameText.text());
             $gameText.text(`the ${monster.active.name} has been slain`);
+            $gameText.width();
+            $prevGameText.width();
+            $gameText.removeClass('game-text-ready').addClass('game-text-active');
+            $prevGameText.removeClass('game-text-ready').addClass('game-text-active');
             monster.active.enemy = undefined;
             $('#battle').css('display','none');
             $('#move-room-buttons').css('display','flex');
